@@ -29,6 +29,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
+    let backButton = UIBarButtonItem(title: "Back", style: .plain,target: webView, action: #selector(webView.goBack))
+    let fowardButton = UIBarButtonItem(title: "Foward", style: .plain,target: webView, action: #selector(webView.goForward))
     
     // Add Progress Bar
     progressView = UIProgressView(progressViewStyle: .bar)
@@ -36,7 +38,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     let progressButton = UIBarButtonItem(customView: progressView)
     
     
-    toolbarItems = [progressButton, spacer,refresh]
+    toolbarItems = [progressButton, spacer, backButton, fowardButton, refresh]
     navigationController?.isToolbarHidden = false
     
     
@@ -103,7 +105,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
     alertController.addAction(UIAlertAction(title: "Continue", style: .default, handler: nil))
     //  alertController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
     present(alertController, animated: true, completion: nil)
-    
     
     print("Fue rechazada")
     decisionHandler(.cancel)
